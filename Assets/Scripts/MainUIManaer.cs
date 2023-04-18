@@ -8,6 +8,7 @@ using TMPro;
 public class MainUIManaer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI errorText;
+    public static MainUIManaer Instance;
 
     public void LoadGame()
     {
@@ -36,5 +37,10 @@ public class MainUIManaer : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    public void LoadBestScores()
+    {
+        SceneManager.LoadScene("bestScores");
     }
 }

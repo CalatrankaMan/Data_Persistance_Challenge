@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI YourBestScoreText;
     public TextMeshProUGUI GameOverText;
+    public Button YourBestScoreButton;
     public Button RestartButton;
 
     private bool m_Started = false;
@@ -55,13 +56,6 @@ public class GameManager : MonoBehaviour
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
             }
         }
-        else if (m_GameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
     }
 
     void AddPoint(int point)
@@ -81,6 +75,7 @@ public class GameManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.gameObject.SetActive(true);
         RestartButton.gameObject.SetActive(true);
+        YourBestScoreButton.gameObject.SetActive(true);
     }
 
     void compareScores()
@@ -89,5 +84,10 @@ public class GameManager : MonoBehaviour
         {
             MainManager.Instance.m_BestScore = m_Points;
         }
+    }
+
+    public void LoadBestScores()
+    {
+        SceneManager.LoadScene("bestScores");
     }
 }
